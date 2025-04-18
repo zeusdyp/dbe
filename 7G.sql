@@ -1,0 +1,23 @@
+-- =====================================
+-- SECTION G: CUSTOMER
+-- =====================================
+CREATE TABLE CUSTOMER (
+ C_ID NUMBER,
+ C_NAME VARCHAR2(50),
+ C_CITY VARCHAR2(50)
+);
+INSERT INTO CUSTOMER VALUES (1, 'Bairistow', 'Delhi');
+INSERT INTO CUSTOMER VALUES (2, 'Rahul', 'Chennai');
+INSERT INTO CUSTOMER VALUES (12, 'Smith', 'New York');
+-- Answer 1:
+DELETE FROM CUSTOMER WHERE C_CITY = 'Chennai';
+-- Answer 2:
+ALTER TABLE CUSTOMER DROP COLUMN C_CITY;
+-- Answer 3:
+ALTER TABLE CUSTOMER ADD ADDRESS VARCHAR2(100);
+-- Answer 4:
+UPDATE CUSTOMER SET C_CITY = 'Oslo' WHERE C_NAME = 'Bairistow';
+-- Answer 5:
+SELECT * FROM CUSTOMER WHERE C_ID = 12;
+-- Answer 6:
+DROP TABLE CUSTOMER;
