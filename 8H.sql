@@ -1,21 +1,45 @@
--- =====================================
--- SECTION H: All Types of Join Operations
--- =====================================
--- Inner Join
-SELECT * FROM EMP_B INNER JOIN COMPANY ON EMP_B.COMPANY_NAME =
-COMPANY.COMPANY_NAME;
--- Left Outer Join
-SELECT * FROM EMP_B LEFT OUTER JOIN COMPANY ON EMP_B.COMPANY_NAME =
-COMPANY.COMPANY_NAME;
--- Right Outer Join
-SELECT * FROM EMP_B RIGHT OUTER JOIN COMPANY ON EMP_B.COMPANY_NAME =
-COMPANY.COMPANY_NAME;
--- Full Outer Join
-SELECT * FROM EMP_B FULL OUTER JOIN COMPANY ON EMP_B.COMPANY_NAME =
-COMPANY.COMPANY_NAME;
--- Cross Join
-SELECT * FROM EMP_B CROSS JOIN COMPANY;
--- Self Join (Using alias to join EMP_B to itself on MANAGER_NAME)
-SELECT E1.EMP_NAME AS EMPLOYEE, E2.EMP_NAME AS MANAGED_BY
-FROM EMP_B E1, EMP_B E2
-WHERE E1.MANAGER_NAME = E2.EMP_NAME;
+-- Step 1: Create Tables
+CREATE TABLE Employees (
+    EmpID NUMBER PRIMARY KEY,
+    EmpName VARCHAR2(50),
+    DeptID NUMBER
+);
+
+CREATE TABLE Departments (
+    DeptID NUMBER PRIMARY KEY,
+    DeptName VARCHAR2(50)
+);
+
+-- Step 2: Insert Sample Data
+INSERT INTO Employees (EmpID, EmpName, DeptID) VALUES (1, 'Alice', 10);
+INSERT INTO Employees (EmpID, EmpName, DeptID) VALUES (2, 'Bob', 20);
+INSERT INTO Employees (EmpID, EmpName, DeptID) VALUES (3, 'Charlie', 30);
+INSERT INTO Employees (EmpID, EmpName, DeptID) VALUES (4, 'David', NULL);
+INSERT INTO Employees (EmpID, EmpName, DeptID) VALUES (5, 'Eva', 50);
+
+INSERT INTO Departments (DeptID, DeptName) VALUES (10, 'HR');
+INSERT INTO Departments (DeptID, DeptName) VALUES (20, 'Finance');
+INSERT INTO Departments (DeptID, DeptName) VALUES (30, 'Engineering');
+INSERT INTO Departments (DeptID, DeptName) VALUES (40, 'Marketing');
+
+-- INNER JOIN
+SELECT Employees.EmpID, Employees.EmpName, Departments.DeptName
+FROM Employees
+JOIN Departments ON Employees.DeptID = Departments.DeptID;
+
+-- LEFT OUTER JOIN
+SELECT Employees.EmpID, Employees.EmpName, Departments.DeptName
+FROM Employees
+LEFT OUTER JOIN Departments ON Employees.DeptID = Departments.DeptID;
+
+
+-- RIGHT OUTER JOIN
+SELECT Employees.EmpID, Employees.EmpName, Departments.DeptName
+FROM Employees
+RIGHT OUTER JOIN Departments ON Employees.DeptID = Departments.DeptID;
+
+
+-- FULL OUTER JOIN
+SELECT Employees.EmpID, Employees.EmpName, Departments.DeptName
+FROM Employees
+FULL OUTER JOIN Departments ON Employees.DeptID = Departments.DeptID;
